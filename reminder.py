@@ -25,6 +25,8 @@ def speak(message): #To speak the message via audio (text spoke by os)
 # Current location of file
 location = "time_table.csv"
 
+
+
 # Read data from location and Fetching data from csv file
 table = pd.read_csv(location)
 
@@ -85,11 +87,39 @@ def What_Work():
             return 1
     return 0
 
-while True:
-    hours,minutes = get_current_time()
-    is_called = What_Work()
-    if (is_called):
-        sleep(60)
+print("----Please select one of these options----\n")
+print("1. Add a reminder to ur list")
+print("2. Initiate the reminder ")
+
+quest = int(input())
+if quest==1:
+    # entering new time and work for reminder
+    time = input("Input the new reminder time in HH:MM format:\n")
+    task = input("Input the task u wanna get reminder for:\n")
+    with open("time_table.csv","a+") as cf:
+        cf.write("\n"+time+","+task)
+elif quest==2:
+    count=0
+    while True:
+        hours,minutes = get_current_time()
+        is_called = What_Work()
+        # this piece of code will run the reminder two times at an interval of 30 seconds and then abort the execution.
+        if (is_called):
+            if count==1:
+                exit()
+            else:
+                count+=1
+                sleep(30)
+                
+            
+            
+            
+            
+            
+            
+
+
+
 
 # hours,minutes = get_current_time()
 # is_called = What_Work()
