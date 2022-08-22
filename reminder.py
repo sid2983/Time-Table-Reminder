@@ -10,7 +10,7 @@ from datetime import datetime #For current time
 start = time.time()
 #Creating object of notify class
 notification = Notify()
-notification.title = "Remainder"
+# notification.title = "Remainder"
 
 #For Text-to-audio
 engine = pyttsx3.init() #Intialisation
@@ -23,7 +23,7 @@ def speak(message): #To speak the message via audio (text spoke by os)
     engine.runAndWait()
 
 # Current location of file
-location = "~/Desktop/analysis/python_projects/time_table.csv"
+location = "time_table.csv"
 
 # Read data from location and Fetching data from csv file
 table = pd.read_csv(location)
@@ -79,18 +79,19 @@ def What_Work():
             message = f"Now You have to do {keys} at {current_time}"
             notification.message = salutation+message+f"\nTotal time taken : {current_process_time} seconds"
             notification.send() # Sending notification message
+            print(message)
             speak(message)
             # print(end-start)
             return 1
     return 0
 
-# while True:
-#     hours,minutes = get_current_time()
-#     is_called = What_Work()
-#     if (is_called):
-#         sleep(60)
+while True:
+    hours,minutes = get_current_time()
+    is_called = What_Work()
+    if (is_called):
+        sleep(60)
 
-hours,minutes = get_current_time()
-is_called = What_Work()
-if (is_called):
-    sleep(60)
+# hours,minutes = get_current_time()
+# is_called = What_Work()
+# if (is_called):
+#     sleep(60)
