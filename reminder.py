@@ -23,9 +23,7 @@ def speak(message): #To speak the message via audio (text spoke by os)
     engine.runAndWait()
 
 # Current location of file
-location = "time_table.csv"
-
-
+location = "/home/cybergodkiller/Desktop/analysis/python_projects/time-table-reminder/time_table.csv"
 
 # Read data from location and Fetching data from csv file
 table = pd.read_csv(location)
@@ -97,7 +95,7 @@ if quest==1:
     time = input("Input the new reminder time in HH:MM format:\n")
     task = input("Input the task u wanna get reminder for:\n")
     with open("time_table.csv","a+") as cf:
-        cf.write("\n"+time+","+task)
+        cf.write(time+","+task+"\n")
 elif quest==2:
     count=0
     while True:
@@ -109,16 +107,7 @@ elif quest==2:
                 exit()
             else:
                 count+=1
-                sleep(30)
-                
-            
-            
-            
-            
-            
-            
-
-
+                sleep(60) #sleep --> to halt execution upto 1 minutes until minute increments
 
 
 # hours,minutes = get_current_time()
