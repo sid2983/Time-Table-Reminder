@@ -10,7 +10,7 @@ from datetime import datetime #For current time
 start = time.time()
 #Creating object of notify class
 notification = Notify()
-notification.title = "Remainder"
+# notification.title = "Remainder"
 
 #For Text-to-audio
 engine = pyttsx3.init() #Intialisation
@@ -23,7 +23,9 @@ def speak(message): #To speak the message via audio (text spoke by os)
     engine.runAndWait()
 
 # Current location of file
-location = "~/Desktop/analysis/python_projects/time_table.csv"
+location = "time_table.csv"
+
+
 
 # Read data from location and Fetching data from csv file
 table = pd.read_csv(location)
@@ -79,18 +81,47 @@ def What_Work():
             message = f"Now You have to do {keys} at {current_time}"
             notification.message = salutation+message+f"\nTotal time taken : {current_process_time} seconds"
             notification.send() # Sending notification message
+            print(message)
             speak(message)
             # print(end-start)
             return 1
     return 0
 
-# while True:
-#     hours,minutes = get_current_time()
-#     is_called = What_Work()
-#     if (is_called):
-#         sleep(60)
+print("----Please select one of these options----\n")
+print("1. Add a reminder to ur list")
+print("2. Initiate the reminder ")
 
-hours,minutes = get_current_time()
-is_called = What_Work()
-if (is_called):
-    sleep(60)
+quest = int(input())
+if quest==1:
+    # entering new time and work for reminder
+    time = input("Input the new reminder time in HH:MM format:\n")
+    task = input("Input the task u wanna get reminder for:\n")
+    with open("time_table.csv","a+") as cf:
+        cf.write("\n"+time+","+task)
+elif quest==2:
+    count=0
+    while True:
+        hours,minutes = get_current_time()
+        is_called = What_Work()
+        # this piece of code will run the reminder two times at an interval of 30 seconds and then abort the execution.
+        if (is_called):
+            if count==1:
+                exit()
+            else:
+                count+=1
+                sleep(30)
+                
+            
+            
+            
+            
+            
+            
+
+
+
+
+# hours,minutes = get_current_time()
+# is_called = What_Work()
+# if (is_called):
+#     sleep(60)
