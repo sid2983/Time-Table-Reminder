@@ -1,6 +1,5 @@
 #Importing all modules
 import time
-from os import chdir
 import pyttsx3 #For text-to-audio recognition
 from re import X
 import pandas as pd #For importing csv data
@@ -25,7 +24,7 @@ def speak(message): #To speak the message via audio (text spoke by os)
     engine.runAndWait()
 
 # Current location of file
-location = "/home/cybergodkiller/Desktop/analysis/python_projects/time-table-reminder/time_table.csv"
+location = "time_table.csv"
 
 # Read data from location and Fetching data from csv file
 table = pd.read_csv(location)
@@ -87,44 +86,7 @@ def What_Work():
             return 1
     return 0
 
-<<<<<<< HEAD
-# print("----Please select one of these options----\n")
-# print("1. Add a reminder to ur list")
-# print("2. Initiate the reminder ")
 
-# quest = int(input())
-# if quest==1:
-#     # entering new time and work for reminder
-#     time = input("Input the new reminder time in HH:MM format:\n")
-#     task = input("Input the task u wanna get reminder for:\n")
-#     with open("time_table.csv","a+") as cf:
-#         cf.write("\n"+time+","+task)
-# elif quest==2:
-startingmssg = "reminder process has been started"
-notification.startingmssg = startingmssg
-notification.send()
-    
-count=0
-while True:
-    hours,minutes = get_current_time()
-    is_called = What_Work()
-    # this piece of code will run the reminder two times at an interval of 30 seconds and then abort the execution.
-    if (is_called):
-        if count==1:
-            exit()
-        else:
-            count+=1
-            sleep(30)
-                
-            
-            
-            
-            
-            
-            
-
-
-=======
 print("----Please select one of these options----\n")
 print("1. Add a reminder to ur list")
 print("2. Initiate the reminder ")
@@ -135,8 +97,12 @@ if quest==1:
     time = input("Input the new reminder time in HH:MM format:\n")
     task = input("Input the task u wanna get reminder for:\n")
     with open("time_table.csv","a+") as cf:
-        cf.write(time+","+task+"\n")
+        cf.write("\n"+time+","+task)
 elif quest==2:
+    startingmssg = "reminder process has been started"
+    notification.startingmssg = startingmssg
+    notification.send()
+        
     count=0
     while True:
         hours,minutes = get_current_time()
@@ -147,11 +113,13 @@ elif quest==2:
                 exit()
             else:
                 count+=1
-                sleep(60) #sleep --> to halt execution upto 1 minutes until minute increments
->>>>>>> 93fdda3dbd76223bf43dd82888de662d44d49ecf
+                sleep(60)
+                
+            
+            
+            
+            
+            
+            
 
 
-# hours,minutes = get_current_time()
-# is_called = What_Work()
-# if (is_called):
-#     sleep(60)
